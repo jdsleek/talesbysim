@@ -1,8 +1,9 @@
 :root {
-    --primary-color: #ff6f61;
-    --secondary-color: #6b5b95;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --primary-color: #ff6f61; /* Coral */
+    --secondary-color: #6b5b95; /* Purple */
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -11,14 +12,25 @@ body {
     padding: 0;
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
     color: #333;
+    min-height: 100vh;
 }
 
 header {
     background: var(--primary-color);
     color: white;
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: 1.2rem;
 }
 
 .library {
@@ -34,16 +46,38 @@ header {
     background: var(--glass-bg);
     backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 1rem;
+    padding: 1.5rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
 }
 
 .story-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.story-card img {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 2px solid var(--glass-border);
+}
+
+.story-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+}
+
+.story-card p {
+    margin: 0.5rem 0 0;
+    font-family: 'Comic Neue', cursive;
+    font-size: 1rem;
+    color: #555;
 }
 
 .flipbook-container {
@@ -65,11 +99,17 @@ header {
     height: 90vh;
     background: white;
     border-radius: 16px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
     overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
 }
 
 .page {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -82,6 +122,7 @@ header {
     max-width: 80%;
     border-radius: 8px;
     margin-bottom: 1rem;
+    box-shadow: var(--shadow);
 }
 
 .page p {
@@ -89,4 +130,47 @@ header {
     font-size: 1.2rem;
     line-height: 1.6;
     text-align: center;
+    max-width: 600px;
+}
+
+.navigation-btns {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.navigation-btns button {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.navigation-btns button:hover {
+    background: var(--secondary-color);
+}
+
+#close-book {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+#close-book:hover {
+    background: var(--secondary-color);
 }
